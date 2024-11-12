@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Check-in</title>
+</head>
+<body>
+    <h1>Check In</h1>
+    <form action="{{ url_for('checkin') }}" method="POST">
+        <input type="text" name="name" placeholder="Enter your name" required>
+        <input type="hidden" name="flight_id" value="{{ flight.id }}">
+        <button type="submit">Check In</button>
+    </form>
+</body>
+</html>

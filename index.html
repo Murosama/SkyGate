@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airport Management</title>
+</head>
+<body>
+    <h1>Airport Management System</h1>
+    <h2>Flights</h2>
+    <ul>
+        {% for flight in flights %}
+        <li>
+            {{ flight.flight_number }} - {{ flight.departure_city }} to {{ flight.arrival_city }} - Status: {{ flight.status }}
+            <form action="{{ url_for('checkin') }}" method="POST">
+                <input type="text" name="name" placeholder="Enter your name" required>
+                <input type="hidden" name="flight_id" value="{{ flight.id }}">
+                <button type="submit">Check In</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Real-Time Flight Tracking</h3>
+    <form>
+        <input type="text" id="flight_number" placeholder="Enter Flight Number">
+        <button type="button" onclick="trackFlight()">Track Flight</button>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
+    <script>
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        function trackFlight() {
+            const flightNumber = document.getElementById('flight_number').value;
+            socket.emit('track_flight', flightNumber);
+        }
+
+        socket.on('flight_status', function(data) {
+            alert('Flight Status: ' + data.status);
+        });
+    </script>
+</body>
+</html>
