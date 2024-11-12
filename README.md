@@ -1,2 +1,2 @@
 # SkyGate
-SkyGate simplifies airport operations by managing flight schedules and passenger check-ins. It enhances the passenger experience with real-time flight tracking and live updates.
+SkyGate is a Flask-based airport management system designed to handle flight schedules, passenger check-ins, and real-time flight tracking. The system allows admins to manage flights and passengers, while also providing passengers with the ability to check in. It features a real-time interface for tracking flight statuses, along with email notifications and WebSocket-powered live updates. SkyGate aims to optimize airport operations and enhance the passenger experience by providing seamless access to essential information.
